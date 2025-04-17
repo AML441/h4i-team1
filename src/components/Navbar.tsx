@@ -5,7 +5,7 @@ import cart from '../assets/cart.png'
 import home from '../assets/home.png'
 
 const Navbar = () => {
-  const loggedIn = true
+  const loggedIn = false
 
   return (
     <div className="w-full h-40 bg-[#C7A2D8] flex items-center px-6 relative">

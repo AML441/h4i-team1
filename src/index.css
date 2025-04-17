@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@theme {
+    --font-abel: "Abel", sans-serif;
+}
