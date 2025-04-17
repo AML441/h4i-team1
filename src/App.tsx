@@ -1,17 +1,31 @@
-import React from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "./firebase/firebase";
+import LoginPage from "./pages/LoginPage";
+import ClientProductCatalogue from "./pages/ClientProductCatalogue";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import "./App.css"
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-    return (
-        <div>
-<<<<<<< HEAD
-           <h1 className="bg-blue-500"> Testing</h1>
-=======
-            <h1 className=''>Test</h1>
->>>>>>> 203d59abafab0aa09cc09e65019283d342f422a1
-        </div>
-    );
+    // const [user, setUser] = useState<User | null>(null);
 
+    // useEffect(() => {
+    //   const unsub = onAuthStateChanged(auth, (user) => {
+    //     setUser(user);
+    //   });
+    //   return unsub;
+    // }, []);
+  
+    return (
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/" element={user ? <ClientProductCatalogue/> : <Navigate to="login" replace/>} /> */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Routes>
+      </BrowserRouter>
+    );
 }
 
 export default App;
