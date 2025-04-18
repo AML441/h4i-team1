@@ -7,6 +7,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css"
 import ForgotPassword from "./pages/ForgotPassword";
 import Register from "./pages/Register";
+import VendorProductCatalogue from "./pages/VendorProductCatalogue";
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
         </Routes>
       </BrowserRouter>
     );
