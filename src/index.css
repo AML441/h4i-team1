@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 @import "tailwindcss";
->>>>>>> 203d59abafab0aa09cc09e65019283d342f422a1
+
+@theme {
+    --font-abel: "Abel", sans-serif;
+}
