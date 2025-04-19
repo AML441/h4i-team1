@@ -1,30 +1,22 @@
+import { User } from 'firebase/auth';
 import React from 'react'
 
-function ClientProfilePage() {
+interface ProfileProps {
+    userData : User;
+}
+
+function ClientProfilePage({ userData }: ProfileProps) {
     return (
         <div>
-            {/* box for list of products */}
             {/* Will need to set up the routing so that I can test if the dimensions are right*/}
+            {/*Will later need to add name and number of purchases to the UserData Interface.*/ }
             <div className="mx-auto mt-auto w-[10rem] bg-[#C7A2D8] border-2" >
-                <ul className="space-y-4">
-                    <li className="flex items-center gap-4">
-                        <img src="../assets/logo.png" alt="Logo" className="w-12 h-12 rounded-md bg-purple-200 p-1"/>
-                        <span className="text-gray-800 font-medium">[NAME], [PRICE]</span>
-                    </li>
-                    <li className="flex items-center gap-4">
-                        <img src="/assets/logo.png" alt="Product" className="w-12 h-12 rounded-md bg-purple-200 p-1" />
-                        <span className="text-gray-800 font-medium">[NAME], [PRICE]</span>
-                    </li>
-                    <li className="flex items-center gap-4">
-                        <img src="/assets/logo.png" alt="Product" className="w-12 h-12 rounded-md bg-purple-200 p-1" />
-                        <span className="text-gray-800 font-medium">[NAME],[PRICE]</span>
-                    </li>
-
-                </ul>
-
-                {/* Need to implement total and checkout later!! */}
-
-
+                <p className="text-base">Email: {userData.email} </p>
+                <br />
+                <br />
+                <p className="text-base">User Stats: </p>
+                <p className="text-base">Number of Purchases</p>
+                <p className="text-base">Most Frequent Category: </p>
             </div>
 
 
