@@ -1,17 +1,23 @@
 import { User } from 'firebase/auth';
 import React from 'react'
+import Navbar from '../components/Navbar';
 
-interface ProfileProps {
-    userData : User;
-}
+// interface ProfileProps {
+//     userData : User;
+// }
 
-function ClientProfilePage({ userData }: ProfileProps) {
+function ClientProfilePage() {
     return (
         <div>
             {/* Will need to set up the routing so that I can test if the dimensions are right*/}
-            {/*Will later need to add name and number of purchases to the UserData Interface.*/ }
-            <div className="mx-auto mt-auto w-[10rem] bg-[#C7A2D8] border-2" >
-                <p className="text-base">Email: {userData.email} </p>
+            {/*Will later need to add name and number of purchases to the UserData Interface.
+            { userData }: ProfileProps*/ }
+            <Navbar/>
+            <div>
+                <h1> PROFILE PAGE</h1>
+            </div>
+            <div className="mx-auto mt-50 w-[100rem] bg-[#FCF6FF]" >
+                <p className="text-base">Email: </p>
                 <br />
                 <br />
                 <p className="text-base">User Stats: </p>
