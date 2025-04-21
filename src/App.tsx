@@ -6,7 +6,7 @@ import ClientProductCatalogue from "./pages/ClientProductCatalogue";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css"
 import ForgotPassword from "./pages/ForgotPassword";
-import Register from "./pages/Register";
+import RegisterPage from "./pages/RegisterPage";
 import VendorProductCatalogue from "./pages/VendorProductCatalogue";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={user ? <ClientProductCatalogue user={user}/> : <Navigate to="login" replace/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
         </Routes>
       </BrowserRouter>
