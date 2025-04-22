@@ -28,6 +28,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
+          <Route path="/client-catalogue" element={<ClientProductCatalogue />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
         </Routes>
       </BrowserRouter>

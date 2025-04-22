@@ -40,26 +40,30 @@ export default function VendorProductCatalogue() {
   return (
     <>
       <VendorNavbar />
-      <div className="min-h-screen flex flex-col items-center px-5 font-abel mt-40">
+      <div className="flex flex-col items-center px-5 font-abel mt-10">
 
         <div className="flex flex-col items-center w-full">
-          <h2 className="font-abel m-20">PRODUCTS</h2>
+          <div className="flex w-full justify-center gap-150 mb-10">
+            <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
+            <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
+          </div>
 
-          <div className="w-full">
-            <h3 className="text-xl font-abel mb-5">Figurines</h3>
+
+          <div>
+            <h3 className="text-xl font-abel mx-5 mt-5">Figurines</h3>
             <div className="flex flex-wrap">
               {products.figurines.map((name) => (
-                <ProductCard key={name} name={name} />
+                <ProductCard key={name} name={name} vendor={true} />
               ))}
               <AddCard />
             </div>
           </div>
 
-          <div className="w-full mt-10">
-            <h3 className="text-xl font-semibold mb-2">Plushes</h3>
+          <div className="m-10">
+            <h3 className="text-xl font-abel mx-5 mt-5">Plushes</h3>
             <div className="flex flex-wrap">
               {products.plushes.map((name) => (
-                <ProductCard key={name} name={name} />
+                <ProductCard key={name} name={name} vendor={true}/>
               ))}
               <AddCard />
             </div>
