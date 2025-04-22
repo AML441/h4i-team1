@@ -7,10 +7,10 @@ const Navbar = () => {
   const loggedIn = false
 
   return (
-    <div className="w-full h-40 bg-[#C7A2D8] flex items-center px-6 relative">
+    <div className="w-full h-30 bg-[#C7A2D8] flex items-center px-6 relative">
 
       <div className="absolute left-1/2 transform -translate-x-1/2">
-        <img src={logo} alt="Website Logo" className="h-full object-contain scale-150 mt-30" />
+        <img src={logo} alt="Website Logo" className="h-full object-contain scale-100 mt-30" />
       </div>
 
       {loggedIn && (

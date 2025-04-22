@@ -7,14 +7,14 @@ const VendorNavbar = () => {
   const loggedIn = false
 
   return (
-    <div className="w-full h-40 bg-[#ECC3FF] flex items-center px-6 relative">
+    <div className="w-full h-30 bg-[#ECC3FF] flex items-center px-6 relative">
 
 
     <div className="absolute top-4 left-6 text-white font-semibold text-lg">
         Welcome, vendor!
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2">
-        <img src={logo} alt="Website Logo" className="h-full object-contain scale-150 mt-30" />
+        <img src={logo} alt="Website Logo" className="h-full object-contain scale-100 mt-30" />
       </div>
 
       {loggedIn && (
