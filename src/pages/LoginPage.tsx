@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
-import { UserData } from "../types/types";
 import { Link, useNavigate } from "react-router";
 
 const LoginPage = () => {

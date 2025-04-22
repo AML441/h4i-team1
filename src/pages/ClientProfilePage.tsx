@@ -1,32 +1,24 @@
+import { User } from 'firebase/auth';
 import React from 'react'
+import Navbar from '../components/Navbar';
+import { Client } from  '../types/Client';
 
-function ClientProfilePage() {
+//  interface ProfileProps {
+//      client : Client;
+//  }
+
+function ClientProfilePage(/*{ client } : ProfileProps*/) {
     return (
         <div>
-            {/* box for list of products */}
-            {/* Will need to set up the routing so that I can test if the dimensions are right*/}
-            <div className="mx-auto mt-auto w-[10rem] bg-purple-50 border-2" >
-                <ul className="space-y-4">
-                    <li className="flex items-center gap-4">
-                        <img src="../assets/logo.png" alt="Logo" className="w-12 h-12 rounded-md bg-purple-200 p-1"/>
-                        <span className="text-gray-800 font-medium">[NAME], [PRICE]</span>
-                    </li>
-                    <li className="flex items-center gap-4">
-                        <img src="/assets/logo.png" alt="Product" className="w-12 h-12 rounded-md bg-purple-200 p-1" />
-                        <span className="text-gray-800 font-medium">[NAME], [PRICE]</span>
-                    </li>
-                    <li className="flex items-center gap-4">
-                        <img src="/assets/logo.png" alt="Product" className="w-12 h-12 rounded-md bg-purple-200 p-1" />
-                        <span className="text-gray-800 font-medium">[NAME],[PRICE]</span>
-                    </li>
-
-                </ul>
-
-                {/* Need to implement total and checkout later!! */}
-
-
+            <Navbar/>
+            <div>
             </div>
-
+            <div className="mx-auto mt-50 w-[90rem] bg-[#FCF6FF] border border-[#ECC3FF] p-6 rounded-xl" >
+                <p className="text-4xl font-abel mt-8 mb-8">Name:  </p>
+                <p className="text-4xl font-abel mt-8 mb-8">Email:  </p>
+                <p className="text-4xl font-abel mt-8 mb-8">User Stats: </p>
+                <p className="text-4xl font-abel mt-8 mb-8 ml-8">Number of Purchases:</p>
+            </div>
 
         </div>
 

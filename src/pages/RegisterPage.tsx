@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
-import { UserData } from "../types/types";
+import { Client } from "../types/Client";
 import { Link, useNavigate } from "react-router";
 
 const RegisterPage = () => {
@@ -26,9 +26,12 @@ const RegisterPage = () => {
         email,
         password
       );
-      const defaultData: UserData = {
+      const defaultData: Client = {
         email: email,
-        notes: "Use the textbox above to change me!",
+        name: "",
+        id: "",
+        password: "",
+        itemsInCart: [],
       };
       await setDoc(doc(db, "users", userCred.user.uid), defaultData);
       await navigate("/");

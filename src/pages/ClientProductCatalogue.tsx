@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
-import { UserData } from "../types/types";
+import { Client } from "../types/Client";
 import { signOut, User } from "firebase/auth";
 import Navbar from "../components/Navbar";
 
