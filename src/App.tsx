@@ -8,6 +8,11 @@ import "./App.css"
 import ForgotPassword from "./pages/ForgotPassword";
 import Register from "./pages/RegisterPage";
 import VendorProductCatalogue from "./pages/VendorProductCatalogue";
+import ClientCartCheckedOut from "./pages/ClientCartCheckedOut";
+import VendorProductPage from "./pages/VendorProductPage";
+import ClientCart from "./pages/ClientCart";
+
+
 
 
 function App() {
@@ -32,6 +37,11 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
             <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
+            <Route path="/checked-out" element={<ClientCartCheckedOut />} />
+            <Route path="/vendor-products" element={<VendorProductPage />} />
+            <Route path="/cart" element={<ClientCart />} />
+
+
             </Routes>
         </BrowserRouter>
       </>

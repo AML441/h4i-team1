@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-=======
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 @import "tailwindcss";
 
@@ -13,4 +7,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
->>>>>>> d13f027ef93460246406b663c7fdeb8a737cd727
