@@ -1,4 +1,4 @@
-# 🎁 Unbox It - Blind Box E-commerce Store
+# 🎁 Flutterbox - Blind Box E-commerce Store
 
 Welcome to **Unbox It**, an e-commerce web app where customers can buy surprise blind boxes filled with cute figurines!
 

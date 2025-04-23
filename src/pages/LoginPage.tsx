@@ -1,9 +1,7 @@
 import Navbar from '../components/Navbar'
 import { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
-import { UserData } from "../types/types";
 import { Link, useNavigate } from "react-router";
 
 const LoginPage = () => {
@@ -14,18 +12,8 @@ const LoginPage = () => {
 
   const handleAuth = async () => {
     try {
-      if (signup) {
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        const defaultData: UserData = { 
-          email: email, 
-          notes: "Use the textbox above to change me!" 
-        };
-        await setDoc(doc(db, "users", userCred.user.uid), defaultData);
-        navigate("/");
-      } else {
         await signInWithEmailAndPassword(auth, email, password);
         navigate("/");
-      }
     } catch (error: any ) {
       alert(error.message);
     }
