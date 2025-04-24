@@ -6,9 +6,14 @@ import ClientProductCatalogue from "./pages/ClientProductCatalogue";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css"
 import ForgotPassword from "./pages/ForgotPassword";
-import RegisterPage from "./pages/RegisterPage";
+import Register from "./pages/RegisterPage";
 import VendorProductCatalogue from "./pages/VendorProductCatalogue";
-import ClientProfilePage from "./pages/ClientProfilePage";
+import ClientCartCheckedOut from "./pages/ClientCartCheckedOut";
+import VendorProductPage from "./pages/VendorProductPage";
+import ClientCart from "./pages/ClientCart";
+
+
+
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
@@ -21,17 +26,25 @@ function App() {
     }, []);
   
     return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={user ? <ClientProductCatalogue user={user}/> : <Navigate to="login" replace/>} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
-          <Route path="/client-catalogue" element={<ClientProductCatalogue />} />
-          <Route path="/client-profile" element={<ClientProfilePage />} />
-        </Routes>
-      </BrowserRouter>
+        <>
+            <div>
+            <h1 className="bg-blue-500"> Testing</h1>
+            </div>
+        <BrowserRouter>
+            <Routes>
+            <Route path="/" element={user ? <ClientProductCatalogue user={user}/> : <Navigate to="login" replace/>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/vendor-catalogue" element={<VendorProductCatalogue />} />
+            <Route path="/checked-out" element={<ClientCartCheckedOut />} />
+            <Route path="/vendor-products" element={<VendorProductPage />} />
+            <Route path="/cart" element={<ClientCart />} />
+
+
+            </Routes>
+        </BrowserRouter>
+      </>
     );
 }
 
