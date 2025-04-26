@@ -1,8 +1,8 @@
 import { getFirestore, doc, setDoc, updateDoc, collection, addDoc, arrayUnion, arrayRemove, deleteDoc } from "firebase/firestore";
 
 import { db } from "./firebase"; 
-import { Client } from '../types/Client';
-import { Vendor } from '../types/Vendor';
+import { Client } from '../types/User';
+import { Vendor } from '../types/User';
 import { Item } from '../types/Item';
 
 export const createClient = async (clientData: Omit<Client, "id">) => {
