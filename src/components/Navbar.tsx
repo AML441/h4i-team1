@@ -32,7 +32,7 @@ const Navbar = () => {
       {loggedIn && (
         <div className="ml-auto flex gap-6 items-center pt-4">
           <Link to="/client-profile"><img src={user} alt="User icon" className="h-8 object-contain" /> </Link>
-          <img src={cart} alt="Cart icon" className="h-8 object-contain" />
+          <Link to="/cart"><img src={cart} alt="Cart icon" className="h-8 object-contain" /></Link>
           <img src={home} alt="Home icon" className="h-8 object-contain" />
         </div>
       )}
