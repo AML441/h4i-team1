@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { AuthProvider } from "./auth/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -8,6 +8,7 @@ import VendorProductCatalogue from "./pages/VendorProductCatalogue";
 import ClientCartCheckedOut from "./pages/ClientCartCheckedOut";
 import VendorProductPage from "./pages/VendorProductPage";
 import ClientProfilePage from "./pages/ClientProfilePage";
+import ClientCart from "./pages/ClientCart";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/checkout-out" element={<ClientCartCheckedOut />} />
           <Route path="/vendor-products" element={<VendorProductPage />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
+          <Route path="/cart" element={<ClientCart/>} />
         </Routes>
       </AuthProvider>
     </Router>
