@@ -43,6 +43,7 @@ const Navbar = () => {
           <Link to="/client-profile">
             <img src={user} alt="User icon" className="h-7 object-contain" />{" "}
           </Link>
+
         </div>
       )}
     </div>
