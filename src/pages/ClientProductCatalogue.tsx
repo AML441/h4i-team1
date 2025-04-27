@@ -10,6 +10,12 @@ import { useEffect, useState } from "react";
 // No more hardcoded products here! We'll load from Firestore instead.
 
 export default function ClientProductCatalogue() {
+  // Check for client/vendor status
+  const { user, role } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
   const { user, loading } = useAuth();
   const [products, setProducts] = useState<string[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -34,10 +40,11 @@ export default function ClientProductCatalogue() {
     return (
       <div className="text-center mt-20 text-xl font-abel">Loading...</div>
     );
+
   }
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
+  if (role !== "client") {
+    return <Navigate to="*" />;
   }
 
   const handleLogout = async () => {

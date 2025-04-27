@@ -1,12 +1,32 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase/firebase";
-import { doc, getDoc, updateDoc, addDoc, collection } from "firebase/firestore";
+
+import { Navigate, useNavigate } from "react-router";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import cartIcon from "../assets/cart.png";
+import homeIcon from "../assets/home.png";
+import userIcon from "../assets/user.png";
 import logo from "../assets/logo.png";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../auth/AuthProvider";
 
+const cartItems = [
+  { productId: "dreamy-series", name: "Dreamy Series Figurine", price: 25 },
+  { productId: "cloudy-series", name: "Cloudy Series Figurine", price: 25 },
+  { productId: "dawn-series", name: "Dawn Series Figurine", price: 25 },
+];
 
 export default function ClientCart() {
+  // Check for client/vendor status
+  const { user, role } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role !== "client") {
+    return <Navigate to="*" />;
+  }
+
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -54,9 +74,10 @@ export default function ClientCart() {
 
       for (const itemName of cartItems) {
         await addDoc(collection(db, "orders"), {
-          userId: user.uid,
-          productName: itemName,
-          createdAt: new Date()
+          userId = user.uid,
+          productId = item.productId;
+          productName = itemName;
+          quanity: 1;
         });
       }
 
@@ -85,7 +106,6 @@ export default function ClientCart() {
       {/* Cart Header */}
       <div className="text-center mt-8">
         <h1 className="text-5xl font-light tracking-widest">CART</h1>
-        <img src={logo} alt="Flutter Box Logo" className="mx-auto mt-4 w-24 h-24" />
       </div>
 
       {/* Cart Items */}

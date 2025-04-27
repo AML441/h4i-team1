@@ -1,38 +1,27 @@
-import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
-import Navbar from "../components/Navbar";
+
+import { Navigate } from "react-router";
+import { useAuth } from "../auth/AuthProvider";
 
 export default function ClientCartCheckedOut() {
-  const navigate = useNavigate();
+  // Check for client/vendor status
+  const { user, role } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role !== "client") {
+    return <Navigate to="*" />;
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center">
-      {/* Use Navbar component */}
-      <Navbar />
-
-      {/* Logo */}
-      <div className="text-center mt-8">
-        <img src={logo} alt="Flutter Box Logo" className="mx-auto w-24 h-24" />
-      </div>
-
-      {/* Success checkmark and message */}
-      <div className="text-center mt-16">
-        <div className="w-24 h-24 mx-auto border-4 border-purple-500 rounded-full flex items-center justify-center">
-          <span className="text-5xl text-purple-500">✓</span>
-        </div>
-
-        <p className="mt-8 text-purple-700 text-lg font-medium leading-relaxed">
-          Items purchased!<br />
-          Thanks for shopping Flutter Box.
-        </p>
-
-        <button
-          onClick={() => navigate("/")}
-          className="text-purple-600 hover:underline mt-8"
-        >
-          Back to products
-        </button>
-      </div>
+    <div className="p-10 text-center">
+      <h1 className="text-5xl text-purple-600 mb-4">✔️</h1>
+      <h2 className="text-xl font-bold mb-2">Items purchased!</h2>
+      <p>Thanks for shopping Flutter Box.</p>
+      <a href="/catalogue" className="text-purple-500 mt-4 block">
+        Back to products
+      </a>
     </div>
   );
 }

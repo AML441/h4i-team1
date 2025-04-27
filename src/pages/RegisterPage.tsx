@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
 import { Client } from "../types/User";

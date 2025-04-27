@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase"; // adjust path if needed
+import { Navigate } from "react-router";
+import { useAuth } from "../auth/AuthProvider";
 
 type Order = {
   productId: string;
@@ -8,15 +10,30 @@ type Order = {
 };
 
 export default function VendorProductPage() {
-  const [productCounts, setProductCounts] = useState<Record<string, number>>({});
+  // Check for client/vendor status
+  const { user, role } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role !== "vendor") {
+    return <Navigate to="/" />;
+  }
+
+  const [productCounts, setProductCounts] = useState<Record<string, number>>(
+    {}
+  );
 
   useEffect(() => {
     async function fetchOrders() {
       const snapshot = await getDocs(collection(db, "orders"));
-      const allOrders: Order[] = snapshot.docs.map(doc => doc.data() as Order);
+      const allOrders: Order[] = snapshot.docs.map(
+        (doc) => doc.data() as Order
+      );
 
       const counts: Record<string, number> = {};
-      allOrders.forEach(order => {
+      allOrders.forEach((order) => {
         if (!counts[order.productId]) {
           counts[order.productId] = 0;
         }
