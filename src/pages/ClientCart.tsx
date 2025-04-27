@@ -5,11 +5,12 @@ import cartIcon from "../assets/cart.png";
 import homeIcon from "../assets/home.png";
 import userIcon from "../assets/user.png";
 import logo from "../assets/logo.png";
+import Navbar from "../components/Navbar";
 
 const cartItems = [
   { productId: "dreamy-series", name: "Dreamy Series Figurine", price: 25 },
   { productId: "cloudy-series", name: "Cloudy Series Figurine", price: 25 },
-  { productId: "dawn-series", name: "Dawn Series Figurine", price: 25 }
+  { productId: "dawn-series", name: "Dawn Series Figurine", price: 25 },
 ];
 
 export default function ClientCart() {
@@ -21,7 +22,7 @@ export default function ClientCart() {
       for (const item of cartItems) {
         await addDoc(collection(db, "orders"), {
           productId: item.productId,
-          quantity: 1
+          quantity: 1,
         });
       }
       navigate("/checked-out");
@@ -32,24 +33,10 @@ export default function ClientCart() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navbar */}
-      <div className="bg-purple-300 p-4 flex justify-between items-center">
-        <span className="text-purple-900 font-medium">Welcome, User1!</span>
-        <div className="flex gap-4">
-          <img src={userIcon} alt="User" className="w-6 h-6" />
-          <img src={cartIcon} alt="Cart" className="w-6 h-6" />
-          <img src={homeIcon} alt="Home" className="w-6 h-6" />
-        </div>
-      </div>
-
-      {/* Header */}
-      <div className="text-center mt-8">
-        <h1 className="text-5xl font-light tracking-widest">CART</h1>
-        <img src={logo} alt="Flutter Box Logo" className="mx-auto mt-4 w-20 h-20" />
-      </div>
+      <Navbar />
 
       {/* Cart Items */}
-      <div className="max-w-xl mx-auto bg-purple-100 p-6 mt-8 rounded-lg shadow">
+      <div className="max-w-xl mx-auto bg-purple-100 p-6 mt-25 rounded-lg shadow">
         {cartItems.map((item, idx) => (
           <div
             key={idx}

@@ -9,6 +9,7 @@ import ClientCartCheckedOut from "./pages/ClientCartCheckedOut";
 import VendorProductPage from "./pages/VendorProductPage";
 import ClientProfilePage from "./pages/ClientProfilePage";
 import "./App.css";
+import ClientCart from "./pages/ClientCart";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             element={<VendorProductCatalogue />}
           />
           <Route path="/checkout-out" element={<ClientCartCheckedOut />} />
+          <Route path="/cart" element={<ClientCart />} />
           <Route path="/vendor-products" element={<VendorProductPage />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
         </Routes>
