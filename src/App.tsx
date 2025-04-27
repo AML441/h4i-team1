@@ -10,6 +10,8 @@ import VendorProductPage from "./pages/VendorProductPage";
 import ClientProfilePage from "./pages/ClientProfilePage";
 import "./App.css";
 import ClientCart from "./pages/ClientCart";
+import VendorProfilePage from "./pages/VendorProfilePage";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/cart" element={<ClientCart />} />
           <Route path="/vendor-products" element={<VendorProductPage />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
+          <Route path="/vendor-profile" element={<VendorProfilePage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </AuthProvider>
     </Router>

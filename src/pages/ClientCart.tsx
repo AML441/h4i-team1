@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import cartIcon from "../assets/cart.png";
@@ -6,6 +6,7 @@ import homeIcon from "../assets/home.png";
 import userIcon from "../assets/user.png";
 import logo from "../assets/logo.png";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../auth/AuthProvider";
 
 const cartItems = [
   { productId: "dreamy-series", name: "Dreamy Series Figurine", price: 25 },
@@ -14,6 +15,17 @@ const cartItems = [
 ];
 
 export default function ClientCart() {
+  // Check for client/vendor status
+  const { user, role } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role !== "client") {
+    return <Navigate to="*" />;
+  }
+
   const navigate = useNavigate();
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 

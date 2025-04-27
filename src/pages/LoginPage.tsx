@@ -1,22 +1,33 @@
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
 import { Link, useNavigate } from "react-router";
+import { useAuth } from "../auth/AuthProvider";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { user, role, loading } = useAuth();
 
   const handleAuth = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
     } catch (error: any) {
       alert(error.message);
     }
   };
+
+  useEffect(() => {
+    if (!loading && user && role) {
+      if (role === "client") {
+        navigate("/", { replace: true });
+      } else if (role === "vendor") {
+        navigate("/vendor-catalogue", { replace: true });
+      }
+    }
+  }, [user, role, loading, navigate]);
 
   return (
     <div className="h-screen overflow-hidden">

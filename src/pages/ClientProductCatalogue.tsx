@@ -24,16 +24,15 @@ const products = {
 };
 
 export default function ClientProductCatalogue() {
-  const { user, loading, role } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="text-center mt-20 text-xl font-abel">Loading...</div>
-    );
-  }
+  // Check for client/vendor status
+  const { user, role } = useAuth();
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" />;
+  }
+
+  if (role !== "client") {
+    return <Navigate to="*" />;
   }
 
   const handleLogout = async () => {

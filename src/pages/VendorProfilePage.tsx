@@ -1,13 +1,13 @@
-import { getAuth, User } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import { Navigate, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { Client } from "../types/User";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import { Navigate } from "react-router";
+import { auth, db } from "../firebase/firebase";
+import VendorNavbar from "../components/VendorNavbar";
 import { useAuth } from "../auth/AuthProvider";
 
-function ClientProfilePage() {
+function VendorProfilePage() {
   // Check for client/vendor status
   const { user, role } = useAuth();
 
@@ -15,12 +15,13 @@ function ClientProfilePage() {
     return <Navigate to="/login" />;
   }
 
-  if (role !== "client") {
-    return <Navigate to="*" />;
+  if (role !== "vendor") {
+    return <Navigate to="/" />;
   }
 
   const [client, setClient] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchClientData() {
@@ -44,37 +45,51 @@ function ClientProfilePage() {
       } else {
         console.error("No user is signed in!");
       }
+      setLoading(false);
     }
+
     const auth = getAuth();
     auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("User is signed in with UID:", user.uid);
-        fetchClientData(); // Fetch client data once the user is authenticated
+        fetchClientData();
       } else {
         console.error("No user is signed in!");
-        setLoading(false); // Make sure loading is false if no user is logged in
+        setLoading(false);
       }
     });
   }, []);
 
   if (!client) {
-    return <div>Could not load client profile.</div>;
+    return <div>Could not load vendor profile.</div>;
   }
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <div>
-      <Navbar />
-      <div></div>
+      <VendorNavbar />
       <div className="mx-auto mt-50 w-[90rem] bg-[#FCF6FF] border border-[#ECC3FF] p-6 rounded-xl">
         <p className="text-4xl font-abel mt-8 mb-8">Name: {client.name}</p>
-        <p className="text-4xl font-abel mt-8 mb-8">Email: {client.email} </p>
-        <p className="text-4xl font-abel mt-8 mb-8">User Stats: </p>
-        <p className="text-4xl font-abel mt-8 mb-8 ml-8">
-          Number of Purchases: {client.itemsInCart.length}
-        </p>
+        <p className="text-4xl font-abel mt-8 mb-8">Email: {client.email}</p>
+        <div className="flex justify-center">
+          <button
+            onClick={handleLogout}
+            className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-export default ClientProfilePage;
+export default VendorProfilePage;
