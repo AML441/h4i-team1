@@ -25,7 +25,7 @@ function App() {
             path="/vendor-catalogue"
             element={<VendorProductCatalogue />}
           />
-          <Route path="/checkout-out" element={<ClientCartCheckedOut />} />
+          <Route path="/checked-out" element={<ClientCartCheckedOut />} />
           <Route path="/vendor-products" element={<VendorProductPage />} />
           <Route path="/client-profile" element={<ClientProfilePage />} />
           <Route path="/cart" element={<ClientCart/>} />

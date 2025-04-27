@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase/firebase";
 import { doc, getDoc, updateDoc, addDoc, collection } from "firebase/firestore";
-import cartIcon from "../assets/cart.png";
-import homeIcon from "../assets/home.png";
-import userIcon from "../assets/user.png";
 import logo from "../assets/logo.png";
+import Navbar from "../components/Navbar";
+
 
 export default function ClientCart() {
   const navigate = useNavigate();
@@ -80,15 +79,8 @@ export default function ClientCart() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center">
-      {/* Navbar */}
-      <div className="bg-purple-300 w-full flex justify-between p-4">
-        <span className="text-purple-900 font-medium">Welcome, User!</span>
-        <div className="flex gap-4">
-          <img src={userIcon} alt="User" className="w-6 h-6" />
-          <img src={cartIcon} alt="Cart" className="w-6 h-6" />
-          <img src={homeIcon} alt="Home" className="w-6 h-6" />
-        </div>
-      </div>
+      {/* Use Navbar component */}
+      <Navbar />
 
       {/* Cart Header */}
       <div className="text-center mt-8">

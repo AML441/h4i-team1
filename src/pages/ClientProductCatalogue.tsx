@@ -1,32 +1,36 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 import { useAuth } from "../auth/AuthProvider";
 import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
+import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
-// just for now, can delete these when you connect to firebase
-const products = {
-  figurines: [
-    "Dreamy Series Figurine",
-    "Skyline Series Figurine",
-    "Cloudy Series Figurine",
-    "Sunny Series Figurine",
-    "Dawn Series Figurine",
-  ],
-  plushes: [
-    "Dreamy Series Plushie",
-    "Skyline Series Plushie",
-    "Cloudy Series Plushie",
-    "Sunny Series Plushie",
-    "Dawn Series Plushie",
-  ],
-};
+// No more hardcoded products here! We'll load from Firestore instead.
 
 export default function ClientProductCatalogue() {
   const { user, loading } = useAuth();
+  const [products, setProducts] = useState<string[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
 
-  if (loading) {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "products"));
+        const productList = snapshot.docs.map((doc) => doc.data().name) as string[];
+        setProducts(productList);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoadingProducts(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading || loadingProducts) {
     return (
       <div className="text-center mt-20 text-xl font-abel">Loading...</div>
     );
@@ -44,6 +48,19 @@ export default function ClientProductCatalogue() {
     }
   };
 
+  const addToCart = async (itemName: string) => {
+    try {
+      if (!user) return;
+      const userRef = doc(db, "users", user.uid);
+      await updateDoc(userRef, {
+        itemsInCart: arrayUnion(itemName),
+      });
+      alert(`"${itemName}" added to cart!`);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -51,30 +68,17 @@ export default function ClientProductCatalogue() {
         <div className="flex flex-col items-center w-full">
           <div className="flex w-full justify-center gap-150 mb-10">
             <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
-            <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
           </div>
 
-          <div>
-            <h3 className="text-xl font-abel mx-5 mt-5">Figurines</h3>
-            <div className="flex flex-wrap">
-              {products.figurines.map((name) => (
-                <ProductCard key={name} name={name} vendor={false} />
-              ))}
-            </div>
-          </div>
-
-          <div className="m-10">
-            <h3 className="text-xl font-abel mx-5 mt-5">Plushes</h3>
-            <div className="flex flex-wrap">
-              {products.plushes.map((name) => (
-                <ProductCard key={name} name={name} vendor={false} />
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center">
+            {products.map((name) => (
+              <ProductCard key={name} name={name} vendor={false} addToCart={() => addToCart(name)} />
+            ))}
           </div>
 
           <button
             onClick={handleLogout}
-            className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12 self-center"
+            className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12 self-center mt-10"
           >
             Logout
           </button>
