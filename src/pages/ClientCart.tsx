@@ -101,7 +101,7 @@ export default function ClientCart() {
       <Navbar />
 
       {/* Cart Header */}
-      <div className="text-center mt-8">
+      <div className="text-center mt-50">
         <h1 className="text-5xl font-light tracking-widest">CART</h1>
       </div>
 

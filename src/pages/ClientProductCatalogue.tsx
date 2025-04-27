@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
 import { useAuth } from "../auth/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
@@ -79,12 +79,14 @@ export default function ClientProductCatalogue() {
 
           <div className="flex flex-wrap justify-center">
             {products.map((item) => (
+               <Link to={`/product/${item.id}`} key={item.id}>
                <ProductCard 
                key={item.id}  // Use the product's id as the key
                name={item.name}  // Access name from the full item object
                vendor={false} 
                addToCart={() => addToCart(item)}  // Pass the full item object to addToCart
              /> 
+             </Link>
             ))}
           </div>
 

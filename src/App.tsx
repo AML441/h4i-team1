@@ -9,6 +9,7 @@ import ClientCartCheckedOut from "./pages/ClientCartCheckedOut";
 import VendorProductPage from "./pages/VendorProductPage";
 import ClientProfilePage from "./pages/ClientProfilePage";
 import ClientCart from "./pages/ClientCart";
+import ProductDetails from "./pages/ProductDetails";
 import "./App.css";
 import VendorProfilePage from "./pages/VendorProfilePage";
 import PageNotFound from "./pages/PageNotFound";
@@ -27,6 +28,7 @@ function App() {
             path="/vendor-catalogue"
             element={<VendorProductCatalogue />}
           />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/checked-out" element={<ClientCartCheckedOut />} />
           <Route path="/cart" element={<ClientCart />} />
           <Route path="/vendor-products" element={<VendorProductPage />} />
