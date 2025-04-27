@@ -24,7 +24,7 @@ const products = {
 };
 
 export default function ClientProductCatalogue() {
-  const { user, loading } = useAuth();
+  const { user, loading, role } = useAuth();
 
   if (loading) {
     return (

@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signup, setSignup] = useState(false);
   const navigate = useNavigate();
 
   const handleAuth = async () => {
