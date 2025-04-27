@@ -1,3 +1,5 @@
+import { Item } from "../types/Item";
+
 export interface User {
   id: string;
   name: string;
@@ -7,7 +9,7 @@ export interface User {
 
 export interface Client extends User {
   role: "client";
-  itemsInCart: string[];
+  itemsInCart: Item[];
 }
 
 export interface Vendor extends User {

@@ -10,7 +10,6 @@ import VendorProductPage from "./pages/VendorProductPage";
 import ClientProfilePage from "./pages/ClientProfilePage";
 import ClientCart from "./pages/ClientCart";
 import "./App.css";
-import ClientCart from "./pages/ClientCart";
 import VendorProfilePage from "./pages/VendorProfilePage";
 import PageNotFound from "./pages/PageNotFound";
 

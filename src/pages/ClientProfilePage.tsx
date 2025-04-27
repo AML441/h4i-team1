@@ -70,7 +70,7 @@ function ClientProfilePage() {
         <p className="text-4xl font-abel mt-8 mb-8">Email: {client.email} </p>
         <p className="text-4xl font-abel mt-8 mb-8">User Stats: </p>
         <p className="text-4xl font-abel mt-8 mb-8 ml-8">
-          Number of Purchases: {client.itemsInCart.length}
+          Number of Items In Cart: {client.itemsInCart.length}
         </p>
       </div>
     </div>

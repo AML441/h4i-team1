@@ -6,25 +6,25 @@ import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { Item } from "../types/Item";
 
 // No more hardcoded products here! We'll load from Firestore instead.
 
 export default function ClientProductCatalogue() {
   // Check for client/vendor status
-  const { user, role } = useAuth();
+  const { user, loading, role } = useAuth();
 
   if (!user) {
     return <Navigate to="/login" />;
   }
-  const { user, loading } = useAuth();
-  const [products, setProducts] = useState<string[]>([]);
+  const [products, setProducts] = useState<Item[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const snapshot = await getDocs(collection(db, "products"));
-        const productList = snapshot.docs.map((doc) => doc.data().name) as string[];
+        const productList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Item[];
         setProducts(productList);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -55,14 +55,14 @@ export default function ClientProductCatalogue() {
     }
   };
 
-  const addToCart = async (itemName: string) => {
+  const addToCart = async (item: Item) => {
     try {
       if (!user) return;
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        itemsInCart: arrayUnion(itemName),
+        itemsInCart: arrayUnion(item),
       });
-      alert(`"${itemName}" added to cart!`);
+      alert(`"${item.name}" added to cart!`);
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
@@ -78,8 +78,13 @@ export default function ClientProductCatalogue() {
           </div>
 
           <div className="flex flex-wrap justify-center">
-            {products.map((name) => (
-              <ProductCard key={name} name={name} vendor={false} addToCart={() => addToCart(name)} />
+            {products.map((item) => (
+               <ProductCard 
+               key={item.id}  // Use the product's id as the key
+               name={item.name}  // Access name from the full item object
+               vendor={false} 
+               addToCart={() => addToCart(item)}  // Pass the full item object to addToCart
+             /> 
             ))}
           </div>
 

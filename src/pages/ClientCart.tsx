@@ -1,19 +1,16 @@
 
 import { Navigate, useNavigate } from "react-router";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { collection, addDoc, getDoc, doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/firebase";
 import cartIcon from "../assets/cart.png";
 import homeIcon from "../assets/home.png";
 import userIcon from "../assets/user.png";
 import logo from "../assets/logo.png";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../auth/AuthProvider";
+import { useEffect, useState } from "react";
+import { Item } from "../types/Item";
 
-const cartItems = [
-  { productId: "dreamy-series", name: "Dreamy Series Figurine", price: 25 },
-  { productId: "cloudy-series", name: "Cloudy Series Figurine", price: 25 },
-  { productId: "dawn-series", name: "Dawn Series Figurine", price: 25 },
-];
 
 export default function ClientCart() {
   // Check for client/vendor status
@@ -28,7 +25,7 @@ export default function ClientCart() {
   }
 
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<string[]>([]);
+  const [cartItems, setCartItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchCart = async () => {
@@ -58,7 +55,7 @@ export default function ClientCart() {
 
       if (userSnap.exists()) {
         const data = userSnap.data();
-        const updatedCart = (data.itemsInCart || []).filter((item: string) => item !== itemName);
+        const updatedCart = (data.itemsInCart || []).filter((item: Item) => item.name !== itemName);
         await updateDoc(userRef, { itemsInCart: updatedCart });
         setCartItems(updatedCart);
       }
@@ -74,10 +71,10 @@ export default function ClientCart() {
 
       for (const itemName of cartItems) {
         await addDoc(collection(db, "orders"), {
-          userId = user.uid,
-          productId = item.productId;
-          productName = itemName;
-          quanity: 1;
+          userId: user.uid,
+          productId: itemName.id,
+          productName: itemName,
+          quantity: 1,
         });
       }
 
@@ -120,10 +117,10 @@ export default function ClientCart() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-purple-200 rounded" />
-                <span className="text-gray-800">{itemName}</span>
+                <span className="text-gray-800">{itemName.name}</span>
               </div>
               <button
-                onClick={() => removeItem(itemName)}
+                onClick={() => removeItem(itemName.name)}
                 className="text-purple-600 hover:text-purple-800 text-xl"
               >
                 ×
