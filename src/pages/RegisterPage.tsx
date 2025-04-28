@@ -27,8 +27,8 @@ const RegisterPage = () => {
       );
       const defaultData: Client = {
         email: email,
-        name: "",
-        id: "",
+        name: name,
+        id: userCred.user.uid,
         itemsInCart: [],
         role: "client",
       };
