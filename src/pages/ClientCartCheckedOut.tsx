@@ -1,6 +1,7 @@
 
 import { Navigate } from "react-router";
 import { useAuth } from "../auth/AuthProvider";
+import Navbar from "../components/Navbar";
 
 export default function ClientCartCheckedOut() {
   // Check for client/vendor status
@@ -15,7 +16,9 @@ export default function ClientCartCheckedOut() {
   }
 
   return (
-    <div className="p-10 text-center">
+    <>
+    <Navbar />
+    <div className="p-10 text-center mt-40">
       <h1 className="text-5xl text-purple-600 mb-4">✔️</h1>
       <h2 className="text-xl font-bold mb-2">Items purchased!</h2>
       <p>Thanks for shopping Flutter Box.</p>
@@ -23,5 +26,6 @@ export default function ClientCartCheckedOut() {
         Back to products
       </a>
     </div>
+    </>
   );
 }

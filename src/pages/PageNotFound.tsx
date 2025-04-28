@@ -26,7 +26,7 @@ const PageNotFound = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center mt-30 font-abel">
+      <div className="flex flex-col items-center justify-center mt-40 font-abel">
         <h1 className="text-5xl text-[#8330AA] font-bold mb-6">
           404: Page Not Found
         </h1>
