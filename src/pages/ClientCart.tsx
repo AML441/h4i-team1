@@ -1,4 +1,3 @@
-
 import { Navigate, useNavigate } from "react-router";
 import { collection, addDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
@@ -11,9 +10,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { useEffect, useState } from "react";
 import { Item } from "../types/Item";
 
-
 export default function ClientCart() {
-  
   // Check for client/vendor status
   const { user, role } = useAuth();
 
@@ -56,7 +53,9 @@ export default function ClientCart() {
 
       if (userSnap.exists()) {
         const data = userSnap.data();
-        const updatedCart = (data.itemsInCart || []).filter((item: Item) => item.name !== itemName);
+        const updatedCart = (data.itemsInCart || []).filter(
+          (item: Item) => item.name !== itemName
+        );
         await updateDoc(userRef, { itemsInCart: updatedCart });
         setCartItems(updatedCart);
       }
@@ -97,15 +96,11 @@ export default function ClientCart() {
   //const total = cartItems.length * 25;
   const total = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
 
-
-
-
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center">
       {/* Use Navbar component */}
       <Navbar />
-    
+
       {/* Cart Header */}
 
       <div className="text-center mt-45">
@@ -128,7 +123,7 @@ export default function ClientCart() {
               </div>
               <button
                 onClick={() => removeItem(itemName.name)}
-                className="text-purple-600 hover:text-purple-800 text-xl"
+                className="text-purple-600 hover:text-purple-800 text-xl hover:cursor-pointer"
               >
                 ×
               </button>
@@ -142,7 +137,8 @@ export default function ClientCart() {
         <p className="text-lg font-abel mb-2">Total: ${total.toFixed(2)}</p>
         <button
           onClick={handleCheckout}
-          className="text-purple-600 hover:underline mt-2 font-abel"
+          className="bg-purple-500 text-white p-3 rounded-lg w-full mt-4 hover:bg-white hover:text-purple-500 hover:cursor-pointer border-2 border-purple-300 transition-all duration-300 font-abel"
+
         >
           Checkout and Purchase
         </button>

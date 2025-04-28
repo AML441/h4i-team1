@@ -62,7 +62,6 @@ const ProductCard = ({
       setCurrentPrice(editedPrice);
       setCurrentDescription(editedDescription);
       setCurrentImage(editedImage);
-
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -82,7 +81,7 @@ const ProductCard = ({
       {vendor && (
         <button
           onClick={handleEdit}
-          className="absolute top-2 left-2 text-purple-400"
+          className="absolute top-2 left-2 text-purple-400 hover:cursor-pointer"
         >
           <FaPen />
         </button>
@@ -90,7 +89,9 @@ const ProductCard = ({
 
       {/* Only Name and Price */}
       <p className="text-md font-semibold text-center">{currentName}</p>
-      <span className="text-lg font-bold text-purple-700 mt-2">${currentPrice}</span>
+      <span className="text-lg font-bold text-purple-700 mt-2">
+        ${currentPrice}
+      </span>
 
       {/* Edit Modal */}
       {isEditing && (
