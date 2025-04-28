@@ -27,10 +27,10 @@ const PageNotFound = () => {
     <>
       <Navbar />
       <div className="flex flex-col items-center justify-center mt-40 font-abel">
-        <h1 className="text-5xl text-[#8330AA] font-bold mb-6">
+        <h1 className="text-5xl text-[#8330AA] font-abel mb-6">
           404: Page Not Found
         </h1>
-        <p className="text-2xl text-[#8330AA]">
+        <p className="text-2xl font-abel text-[#8330AA]">
           You will be redirected shortly...
         </p>
       </div>

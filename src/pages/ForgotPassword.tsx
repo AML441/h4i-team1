@@ -20,7 +20,7 @@ export default function ForgotPassword() {
   return (
     <div className="h-screen overflow-hidden">
       <Navbar />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div className="flex flex-col mt-36 w-full max-w-md items-center">
           <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-20">
             FORGOT PASSWORD
@@ -40,7 +40,7 @@ export default function ForgotPassword() {
                 />
               </div>
               <button
-                className="w-full h-12 bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 rounded-2xl cursor-pointer mb-10"
+                className="w-full h-12 bg-[#CF93EB] hover:bg-[#8330AA] text-white font-abel py-2 rounded-2xl cursor-pointer mb-10"
                 onClick={handleReset}
               >
                 SEND PASSWORD RESET LINK
