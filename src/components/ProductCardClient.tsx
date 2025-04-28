@@ -31,9 +31,9 @@ const ProductCardClient: React.FC<ProductCardClientProps> = ({
         isSelected ? "bg-green-100" : ""
       }`}
     >
-      <p className="text-md font-semibold text-center">{name}</p>
+      <p className="text-md font-abel text-center h-15">{name}</p>
       <img src={image} className="w-32 h-32 object-cover mb-4 rounded-lg" />
-      <span className="text-lg font-bold text-purple-700 mt-2">${price}</span>
+      <span className="text-lg font-abel text-purple-700">${price}</span>
 
       {/* Add to Cart Button */}
       <button
@@ -41,7 +41,7 @@ const ProductCardClient: React.FC<ProductCardClientProps> = ({
           e.stopPropagation(); // Prevent triggering select on button click
           addToCart();
         }}
-        className="bg-purple-500 text-white p-2 rounded-lg w-full mt-4 hover:bg-white hover:text-purple-500 hover:cursor-pointer border-2 border-purple-300 transition-all duration-300"
+        className="bg-purple-500 text-white p-2 rounded-lg w-full mt-2 hover:bg-white hover:text-purple-500 hover:cursor-pointer border-2 border-purple-300 transition-all duration-300"
       >
         Add to Cart
       </button>
