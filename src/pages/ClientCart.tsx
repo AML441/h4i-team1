@@ -106,7 +106,7 @@ export default function ClientCart() {
       </div>
 
       {/* Cart Items */}
-      <div className="bg-purple-100 rounded-lg p-6 mt-8 w-full max-w-lg shadow">
+      <div className="bg-purple-100 rounded-lg p-6 mt-30 w-full max-w-lg shadow">
         {cartItems.length === 0 ? (
           <p className="text-center text-gray-500">Your cart is empty.</p>
         ) : (

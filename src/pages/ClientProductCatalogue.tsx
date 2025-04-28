@@ -1,22 +1,15 @@
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
 import { useAuth } from "../auth/AuthProvider";
-import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
+import ProductCardClient from "../components/ProductCardClient";
 import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import { Item } from "../types/Item";
 
-// No more hardcoded products here! We'll load from Firestore instead.
-
 export default function ClientProductCatalogue() {
-  // Check for client/vendor status
   const { user, loading, role } = useAuth();
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
   const [products, setProducts] = useState<Item[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
@@ -36,37 +29,28 @@ export default function ClientProductCatalogue() {
     fetchProducts();
   }, []);
 
-  if (loading || loadingProducts) {
-    return (
-      <div className="text-center mt-20 text-xl font-abel">Loading...</div>
-    );
-
-  }
-
-  if (role !== "client") {
-    return <Navigate to="*" />;
-  }
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
-
   const addToCart = async (item: Item) => {
     try {
       if (!user) return;
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        itemsInCart: arrayUnion(item),
+        itemsInCart: arrayUnion(item), // Add the item to the cart array
       });
       alert(`"${item.name}" added to cart!`);
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
   };
+
+  if (loading || loadingProducts) {
+    return (
+      <div className="text-center mt-20 text-xl font-abel">Loading...</div>
+    );
+  }
+
+  if (role !== "client") {
+    return <Navigate to="*" />;
+  }
 
   return (
     <>
@@ -79,12 +63,15 @@ export default function ClientProductCatalogue() {
 
           <div className="flex flex-wrap justify-center">
             {products.map((item) => (
-               <ProductCard 
-               key={item.id}  // Use the product's id as the key
-               name={item.name}  // Access name from the full item object
-               vendor={false} 
-               addToCart={() => addToCart(item)}  // Pass the full item object to addToCart
-             /> 
+              <ProductCardClient
+                key={item.id}
+                productId={item.id}
+                name={item.name}
+                price={item.price}
+                description={item.description}
+                image={item.image}
+                addToCart={() => addToCart(item)}
+              />
             ))}
           </div>
         </div>
