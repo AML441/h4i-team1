@@ -13,6 +13,7 @@ import { Item } from "../types/Item";
 
 
 export default function ClientCart() {
+  
   // Check for client/vendor status
   const { user, role } = useAuth();
 
@@ -73,7 +74,7 @@ export default function ClientCart() {
         await addDoc(collection(db, "orders"), {
           userId: user.uid,
           productId: itemName.id,
-          productName: itemName,
+          productName: itemName.name,
           quantity: 1,
         });
       }
@@ -93,13 +94,18 @@ export default function ClientCart() {
 
   if (loading) return <div className="text-center mt-10">Loading cart...</div>;
 
-  const total = cartItems.length * 25;
+  //const total = cartItems.length * 25;
+  const total = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
+
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center">
       {/* Use Navbar component */}
       <Navbar />
-
+    
       {/* Cart Header */}
       <div className="text-center mt-8">
         <h1 className="text-5xl font-light tracking-widest">CART</h1>
