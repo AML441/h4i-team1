@@ -1,10 +1,10 @@
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase";
-import { Client } from "../types/Client";
+import { Client } from "../types/User";
 import { Link, useNavigate } from "react-router";
 
 const RegisterPage = () => {
@@ -19,15 +19,19 @@ const RegisterPage = () => {
       alert("Passwords do not match!");
       return;
     }
-    
+
     try {
-      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const defaultData: Client = {
         email: email,
-        name: '',
-        id: '',
-        password: '',
-        itemsInCart: []
+        name: "",
+        id: "",
+        itemsInCart: [],
+        role: "client",
       };
       await setDoc(doc(db, "users", userCred.user.uid), defaultData);
       await navigate("/");
@@ -41,7 +45,9 @@ const RegisterPage = () => {
       <Navbar />
       <div className="flex justify-center">
         <div className="flex flex-col mt-36 w-full max-w-md items-center">
-          <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">REGISTER</h1>
+          <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">
+            REGISTER
+          </h1>
 
           <div className="w-full mb-6">
             <h2 className="text-left font-abel text-xl mb-1">Name</h2>
@@ -74,7 +80,9 @@ const RegisterPage = () => {
           </div>
 
           <div className="w-full mb-10">
-            <h2 className="text-left font-abel text-xl mb-1">Confirm Password</h2>
+            <h2 className="text-left font-abel text-xl mb-1">
+              Confirm Password
+            </h2>
             <input
               className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-[#C7A2D8]"
               value={confirmPassword}

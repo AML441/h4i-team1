@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
@@ -12,20 +12,22 @@ const LoginPage = () => {
 
   const handleAuth = async () => {
     try {
-        await signInWithEmailAndPassword(auth, email, password);
-        navigate("/");
-    } catch (error: any ) {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error: any) {
       alert(error.message);
     }
   };
-  
+
   return (
     <div className="h-screen overflow-hidden">
       <Navbar />
       <div className="flex justify-center">
         <div className="flex flex-col mt-36 w-full max-w-md items-center">
-          <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">LOGIN</h1>
-  
+          <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">
+            LOGIN
+          </h1>
+
           <div className="w-full mb-6">
             <h2 className="text-left font-abel text-xl mb-1">Email</h2>
             <input
@@ -34,7 +36,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-  
+
           <div className="w-full mb-2">
             <h2 className="text-left font-abel text-xl mb-1">Password</h2>
             <input
@@ -44,7 +46,7 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-  
+
           <div className="w-full text-right mb-6">
             <Link
               to="/forgot-password"
@@ -53,14 +55,14 @@ const LoginPage = () => {
               Forgot password?
             </Link>
           </div>
-  
+
           <button
             className="w-full h-12 bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 rounded-2xl cursor-pointer mb-10"
             onClick={handleAuth}
           >
             LOGIN
           </button>
-  
+
           <Link
             to="/register"
             className="text-lg text-[#8330AA] font-abel underline cursor-pointer select-none"
@@ -71,6 +73,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default LoginPage
+export default LoginPage;
