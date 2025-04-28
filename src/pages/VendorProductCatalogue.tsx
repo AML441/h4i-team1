@@ -133,12 +133,12 @@ export default function VendorProductCatalogue() {
           {showModal && (
             <div className="fixed inset-0 flex bg-transparent backdrop-blur justify-center items-center z-50">
               <div className="bg-white p-8 rounded-lg shadow-lg w-1/3 max-w-lg">
-                <h2 className="text-2xl font-semibold mb-6 text-purple-500">
+                <h2 className="text-2xl font-abel mb-6 text-purple-500">
                   Add New Product
                 </h2>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-medium">
+                    <label className="block text-gray-700 text-sm font-abel">
                       Product Name
                     </label>
                     <input
@@ -151,7 +151,7 @@ export default function VendorProductCatalogue() {
                     />
                   </div>
                   <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-medium">
+                    <label className="block text-gray-700 text-sm font-abel">
                       Price
                     </label>
                     <input
@@ -164,7 +164,7 @@ export default function VendorProductCatalogue() {
                     />
                   </div>
                   <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-medium">
+                    <label className="block text-gray-700 text-sm font-abel">
                       Description
                     </label>
                     <input
@@ -177,7 +177,7 @@ export default function VendorProductCatalogue() {
                     />
                   </div>
                   <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-medium">
+                    <label className="block text-gray-700 text-sm font-abel">
                       Image URL
                     </label>
                     <input

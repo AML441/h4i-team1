@@ -108,11 +108,11 @@ export default function ClientProductCatalogue() {
                 alt={selectedProduct.name}
                 className="w-40 h-40 object-cover rounded-md mb-4"
               />
-              <h2 className="text-2xl font-semibold mb-2 text-purple-600">
+              <h2 className="text-2xl font-abel mb-2 text-purple-600">
                 {selectedProduct.name}
               </h2>
-              <p className="text-gray-700 mb-2">{selectedProduct.description}</p>
-              <p className="text-lg font-bold text-purple-500 mb-4">
+              <p className="text-gray-700 mb-2 font-abel">{selectedProduct.description}</p>
+              <p className="text-lg font-abel text-purple-500 mb-4">
                 ${selectedProduct.price}
               </p>
               <button
@@ -120,7 +120,7 @@ export default function ClientProductCatalogue() {
                   addToCart(selectedProduct);
                   closeModal();
                 }}
-                className="bg-purple-500 text-white py-2 px-6 rounded-lg font-semibold hover:bg-purple-600 transition"
+                className="bg-purple-500 text-white py-2 px-6 rounded-lg font-abel hover:bg-purple-600 transition"
               >
                 Add to Cart
               </button>
