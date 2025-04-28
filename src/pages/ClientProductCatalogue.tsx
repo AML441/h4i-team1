@@ -13,6 +13,10 @@ export default function ClientProductCatalogue() {
   const [products, setProducts] = useState<Item[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Item | null>(null);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -34,12 +38,22 @@ export default function ClientProductCatalogue() {
       if (!user) return;
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        itemsInCart: arrayUnion(item), // Add the item to the cart array
+        itemsInCart: arrayUnion(item),
       });
       alert(`"${item.name}" added to cart!`);
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
+  };
+
+  const openModal = (item: Item) => {
+    setSelectedProduct(item);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    setShowModal(false);
   };
 
   if (loading || loadingProducts) {
@@ -63,19 +77,57 @@ export default function ClientProductCatalogue() {
 
           <div className="flex flex-wrap justify-center">
             {products.map((item) => (
-              <ProductCardClient
-                key={item.id}
-                productId={item.id}
-                name={item.name}
-                price={item.price}
-                description={item.description}
-                image={item.image}
-                addToCart={() => addToCart(item)}
-              />
+              <div key={item.id} onClick={() => openModal(item)}>
+                <ProductCardClient
+                  productId={item.id}
+                  name={item.name}
+                  price={item.price}
+                  description={item.description}
+                  image={item.image}
+                  addToCart={() => addToCart(item)}
+                />
+              </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Product Details Modal */}
+      {showModal && selectedProduct && (
+       <div className="fixed inset-0 flex bg-transparent backdrop-blur justify-center items-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3 max-w-lg relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-xl"
+            >
+              &times;
+            </button>
+            <div className="flex flex-col items-center">
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                className="w-40 h-40 object-cover rounded-md mb-4"
+              />
+              <h2 className="text-2xl font-semibold mb-2 text-purple-600">
+                {selectedProduct.name}
+              </h2>
+              <p className="text-gray-700 mb-2">{selectedProduct.description}</p>
+              <p className="text-lg font-bold text-purple-500 mb-4">
+                ${selectedProduct.price}
+              </p>
+              <button
+                onClick={() => {
+                  addToCart(selectedProduct);
+                  closeModal();
+                }}
+                className="bg-purple-500 text-white py-2 px-6 rounded-lg font-semibold hover:bg-purple-600 transition"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
