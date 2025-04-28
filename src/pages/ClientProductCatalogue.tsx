@@ -87,13 +87,6 @@ export default function ClientProductCatalogue() {
              /> 
             ))}
           </div>
-
-          <button
-            onClick={handleLogout}
-            className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12 self-center mt-10"
-          >
-            Logout
-          </button>
         </div>
       </div>
     </>

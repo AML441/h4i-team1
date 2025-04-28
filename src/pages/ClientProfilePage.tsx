@@ -1,9 +1,9 @@
-import { getAuth, User } from "firebase/auth";
+import { getAuth, signOut, User } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Client } from "../types/User";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 import { Navigate } from "react-router";
 import { useAuth } from "../auth/AuthProvider";
 
@@ -61,10 +61,17 @@ function ClientProfilePage() {
     return <div>Could not load client profile.</div>;
   }
 
+  const handleLogout = async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Error signing out:", error);
+      }
+    };
+
   return (
     <div>
       <Navbar />
-      <div></div>
       <div className="mx-auto mt-50 w-[90rem] bg-[#FCF6FF] border border-[#ECC3FF] p-6 rounded-xl">
         <p className="text-4xl font-abel mt-8 mb-8">Name: {client.name}</p>
         <p className="text-4xl font-abel mt-8 mb-8">Email: {client.email} </p>
@@ -72,6 +79,14 @@ function ClientProfilePage() {
         <p className="text-4xl font-abel mt-8 mb-8 ml-8">
           Number of Items In Cart: {client.itemsInCart.length}
         </p>
+        <div className="flex justify-center">
+            <button
+                onClick={handleLogout}
+                className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12 self-center mt-10"
+            >
+                Logout
+            </button>
+        </div>
       </div>
     </div>
   );
