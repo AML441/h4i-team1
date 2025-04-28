@@ -73,8 +73,8 @@ export default function ClientProductCatalogue() {
         <div className="flex flex-col items-center w-full">
           <div className="flex w-full justify-center gap-150 mb-10">
             <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
+            <h2 className="text-5xl font-light my-6">PRODUCTS</h2>
           </div>
-
           <div className="flex flex-wrap justify-center">
             {products.map((item) => (
               <div key={item.id} onClick={() => openModal(item)}>
