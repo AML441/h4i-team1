@@ -62,12 +62,12 @@ function ClientProfilePage() {
   }
 
   const handleLogout = async () => {
-      try {
-        await signOut(auth);
-      } catch (error) {
-        console.error("Error signing out:", error);
-      }
-    };
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <div>
@@ -80,12 +80,12 @@ function ClientProfilePage() {
           Number of Items In Cart: {client.itemsInCart.length}
         </p>
         <div className="flex justify-center">
-            <button
-                onClick={handleLogout}
-                className="bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 px-4 rounded h-12 self-center mt-10"
-            >
-                Logout
-            </button>
+          <button
+            onClick={handleLogout}
+            className="bg-[#CF93EB] hover:bg-[#8330AA] hover: cursor-pointer text-white font-bold py-2 px-4 rounded h-12 self-center mt-10"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

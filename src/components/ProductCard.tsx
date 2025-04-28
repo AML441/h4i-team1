@@ -45,24 +45,23 @@ const ProductCard = ({
 
     try {
       console.log("Attempting to update product with name:", editedName);
-
+console.log("HERE 1");
       // Use the productId as the document reference
       const productRef = doc(db, "products", productId); // note that product id is used to refer to products
-
+      console.log("HERE 2");
       await updateDoc(productRef, {
         name: editedName,
         price: editedPrice,
         description: editedDescription,
         image: editedImage,
       });
-
+      console.log("HERE 3");
       // setting current attributes to edited new attributes and making isEditing false to close the pop up modal
       setIsEditing(false);
       setCurrentName(editedName);
       setCurrentPrice(editedPrice);
       setCurrentDescription(editedDescription);
       setCurrentImage(editedImage);
-
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -82,11 +81,12 @@ const ProductCard = ({
       {vendor && (
         <button
           onClick={handleEdit}
-          className="absolute top-2 left-2 text-purple-400"
+          className="absolute top-2 left-2 text-purple-400 hover:cursor-pointer"
         >
           <FaPen />
         </button>
       )}
+
 
       <p className="text-md mt-3 font-abel text-center h-15">{currentName}</p>
       <img src={image} className="w-32 h-32 object-cover rounded-lg" />

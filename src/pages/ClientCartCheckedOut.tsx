@@ -1,7 +1,7 @@
-
-import { Navigate } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useAuth } from "../auth/AuthProvider";
 import Navbar from "../components/Navbar";
+import confirmation from "../assets/confirmation.png";
 
 export default function ClientCartCheckedOut() {
   // Check for client/vendor status
@@ -17,15 +17,27 @@ export default function ClientCartCheckedOut() {
 
   return (
     <>
-    <Navbar />
-    <div className="p-10 text-center mt-40">
-      <h1 className="text-5xl text-purple-600 mb-4">✔️</h1>
-      <h2 className="text-xl font-abel mb-2">Items purchased!</h2>
-      <p className="font-abel">Thanks for shopping Flutter Box.</p>
-      <a href="/catalogue" className="text-purple-500 mt-4 block font-abel">
-        Back to products
-      </a>
-    </div>
+      <Navbar />
+      <div className="p-10 text-center flex flex-col items-center">
+        <img
+          src={confirmation}
+          alt="Confirmation Check"
+          className="object-contain scale-60 mt-20"
+        />
+        <h2 className="text-3xl font-bold mb-2 text-[#8330AA] font-abel">
+          Items purchased!
+        </h2>
+        <p className="font-abel text-[#8330AA]">
+          Thanks for shopping Flutter Box.
+        </p>
+        <Link
+          to="/"
+          className="text-lg text-[#8330AA] font-abel underline cursor-pointer select-none mt-10"
+        >
+          Back to products
+        </Link>
+      </div>
+
     </>
   );
 }
