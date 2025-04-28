@@ -77,7 +77,7 @@ console.log("HERE 1");
   };
 
   return (
-    <div className="relative w-40 h-48 bg-purple-100 rounded-lg shadow-md flex flex-col items-center justify-center p-4 m-4">
+    <div className="relative w-40 h-auto bg-purple-100 rounded-lg shadow-md flex flex-col items-center justify-center p-4 m-4">
       {vendor && (
         <button
           onClick={handleEdit}
@@ -87,11 +87,10 @@ console.log("HERE 1");
         </button>
       )}
 
-      {/* Only Name and Price */}
-      <p className="text-md font-semibold text-center">{currentName}</p>
-      <span className="text-lg font-bold text-purple-700 mt-2">
-        ${currentPrice}
-      </span>
+
+      <p className="text-md mt-3 font-abel text-center h-15">{currentName}</p>
+      <img src={image} className="w-32 h-32 object-cover rounded-lg" />
+      <span className="text-lg font-abel text-purple-700 mt-2">${currentPrice}</span>
 
       {/* Edit Modal */}
       {isEditing && (

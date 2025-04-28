@@ -10,7 +10,7 @@ import { Navigate } from "react-router";
 // AddCard is used at the end of the product list to add new products for vendors
 const AddCard = ({ openModal }: { openModal: () => void }) => (
   <div
-    className="w-40 h-48 border-2 border-purple-300 rounded-lg flex items-center justify-center m-5 text-purple-400 hover:bg-purple-100 transition font-abel"
+    className="w-40 h-auto border-2 border-purple-300 rounded-lg flex items-center justify-center m-5 text-purple-400 hover:bg-purple-100 transition font-abel"
     onClick={openModal}
   >
     <FaPlus size={30} />
