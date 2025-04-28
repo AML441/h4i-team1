@@ -37,6 +37,7 @@ export default function ClientCartCheckedOut() {
           Back to products
         </Link>
       </div>
+
     </>
   );
 }

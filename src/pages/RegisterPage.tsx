@@ -44,7 +44,7 @@ const RegisterPage = () => {
       <Navbar />
       <div className="flex justify-center">
         <div className="flex flex-col mt-36 w-full max-w-md items-center">
-          <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">
+          <h1 className="text-[#8330AA] font-abel text-5xl mb-5">
             REGISTER
           </h1>
 
@@ -91,7 +91,7 @@ const RegisterPage = () => {
           </div>
 
           <button
-            className="w-full h-12 bg-[#CF93EB] hover:bg-[#8330AA] text-white font-bold py-2 rounded-2xl cursor-pointer mb-6"
+            className="w-full h-12 bg-[#CF93EB] hover:bg-[#8330AA] text-white font-abel py-2 rounded-2xl cursor-pointer mb-6"
             onClick={handleRegister}
           >
             CREATE ACCOUNT

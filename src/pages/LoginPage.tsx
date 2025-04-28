@@ -32,7 +32,7 @@ const LoginPage = () => {
   return (
     <div className="h-screen overflow-hidden">
       <Navbar />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div className="flex flex-col mt-36 w-full max-w-md items-center">
           <h1 className="text-[#8330AA] font-abel font-medium text-5xl mb-5">
             LOGIN

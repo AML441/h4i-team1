@@ -102,14 +102,15 @@ export default function ClientCart() {
       <Navbar />
 
       {/* Cart Header */}
-      <div className="text-center mt-8">
-        <h1 className="text-5xl font-light tracking-widest">CART</h1>
+
+      <div className="text-center mt-45">
+        <h1 className="text-5xl font-abel">CART</h1>
       </div>
 
       {/* Cart Items */}
-      <div className="bg-purple-100 rounded-lg p-6 mt-30 w-full max-w-lg shadow">
+      <div className="bg-purple-100 rounded-lg mt-10 p-6 w-full max-w-lg shadow">
         {cartItems.length === 0 ? (
-          <p className="text-center text-gray-500">Your cart is empty.</p>
+          <p className="text-center text-gray-500 font-abel">Your cart is empty.</p>
         ) : (
           cartItems.map((itemName, idx) => (
             <div
@@ -133,10 +134,11 @@ export default function ClientCart() {
 
       {/* Total & Checkout */}
       <div className="text-center mt-8">
-        <p className="text-lg font-semibold mb-2">Total: ${total.toFixed(2)}</p>
+        <p className="text-lg font-abel mb-2">Total: ${total.toFixed(2)}</p>
         <button
           onClick={handleCheckout}
           className="bg-purple-500 text-white p-3 rounded-lg w-full mt-4 hover:bg-white hover:text-purple-500 hover:cursor-pointer border-2 border-purple-300 transition-all duration-300 font-abel"
+
         >
           Checkout and Purchase
         </button>
