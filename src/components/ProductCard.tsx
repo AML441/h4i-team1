@@ -45,17 +45,17 @@ const ProductCard = ({
 
     try {
       console.log("Attempting to update product with name:", editedName);
-
+console.log("HERE 1");
       // Use the productId as the document reference
       const productRef = doc(db, "products", productId); // note that product id is used to refer to products
-
+      console.log("HERE 2");
       await updateDoc(productRef, {
         name: editedName,
         price: editedPrice,
         description: editedDescription,
         image: editedImage,
       });
-
+      console.log("HERE 3");
       // setting current attributes to edited new attributes and making isEditing false to close the pop up modal
       setIsEditing(false);
       setCurrentName(editedName);
