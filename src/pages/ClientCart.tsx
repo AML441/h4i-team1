@@ -110,20 +110,28 @@ export default function ClientCart() {
       {/* Cart Items */}
       <div className="bg-purple-100 rounded-lg mt-10 p-6 w-full max-w-lg shadow">
         {cartItems.length === 0 ? (
-          <p className="text-center text-gray-500 font-abel">Your cart is empty.</p>
+          <p className="text-center text-gray-500 font-abel">
+            Your cart is empty.
+          </p>
         ) : (
           cartItems.map((itemName, idx) => (
             <div
               key={idx}
               className="flex justify-between items-center bg-white p-4 mb-4 rounded shadow"
             >
-              <div className="flex items-center gap-4">
-                <img src={itemName.image} className="w-20 h-20 object-cover rounded-lg" />
-                <span className="text-gray-800">{itemName.name}</span>
+              <div className="flex items-center gap-4 w-full">
+                <img
+                  src={itemName.image}
+                  className="w-20 h-20 object-cover rounded-lg"
+                />
+                <div className="flex justify-between items-center w-full">
+                  <span className="text-gray-800">{itemName.name}</span>
+                  <span className="text-gray-800">${itemName.price}</span>
+                </div>
               </div>
               <button
                 onClick={() => removeItem(itemName.name)}
-                className="text-purple-600 hover:text-purple-800 text-xl hover:cursor-pointer"
+                className="text-purple-600 hover:text-purple-800 text-xl hover:cursor-pointer ml-4"
               >
                 ×
               </button>
@@ -137,7 +145,6 @@ export default function ClientCart() {
         <p className="text-2xl font-abel mb-2">Total: ${total.toFixed(2)}</p>
         <button
           onClick={handleCheckout}
-
           className="bg-purple-500 text-white p-3 rounded-lg w-full mt-4 hover:bg-white hover:text-purple-500 hover:cursor-pointer border-2 border-purple-300 transition-all duration-300 font-abel"
         >
           Checkout and Purchase
